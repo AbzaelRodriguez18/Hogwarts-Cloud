@@ -55,8 +55,8 @@ jobs:
           echo "services:
             app:
               image: ${{ env.IMAGE_NAME }}:${{ github.run_number }}
-              ports:
-                - '80:8080'
+              expose:
+                - '8080'
               environment:
                 - SPRING_DATASOURCE_URL
                 - SPRING_DATASOURCE_USERNAME
