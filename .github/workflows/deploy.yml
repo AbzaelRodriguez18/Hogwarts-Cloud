@@ -58,9 +58,9 @@ jobs:
               expose:
                 - '8080'
               environment:
-                - SPRING_DATASOURCE_URL
-                - SPRING_DATASOURCE_USERNAME
-                - SPRING_DATASOURCE_PASSWORD
+                - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+                - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+                - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
               restart: always" > docker-compose.yml
 
       # 8. Desplegar en AWS Elastic Beanstalk
