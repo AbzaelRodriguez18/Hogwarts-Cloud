@@ -39,7 +39,7 @@ jobs:
       # 5. Calcular nombre de imagen en minúsculas
       - name: Lowercase Image Name
         run: |
-          echo "IMAGE_NAME=$(echo ghcr.io/${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "IMAGE_NAME=$(echo ghcr.io/${{ github.repository }} | tr '[:upper:]' '[:lower:]' | sed 's/-$//')" >> $GITHUB_ENV
 
       # 6. Construir y Subir Imagen Docker
       - name: Build and push Docker image
