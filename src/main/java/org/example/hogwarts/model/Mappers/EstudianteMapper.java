@@ -20,14 +20,14 @@ public class EstudianteMapper {
         if (estudiante.getCasa() != null) {
             dto.setCasa(estudiante.getCasa().getNombre());
         } else {
-            dto.setCasa("Sin casa"); // cambiar
+            dto.setCasa(null);
         }
         
-        if (estudiante.getMascota() == null) {
-            dto.setMascota("No tiene mascota"); //cambiar
+        if (estudiante.getMascota() != null) {
+            dto.setMascota(estudiante.getMascota().getNombre());
         }
         else {
-            dto.setMascota(estudiante.getMascota().getNombre());
+            dto.setMascota(null);
         }
 
         List<AsignaturaCalificacionDTO> listaAsig = new ArrayList<>();
