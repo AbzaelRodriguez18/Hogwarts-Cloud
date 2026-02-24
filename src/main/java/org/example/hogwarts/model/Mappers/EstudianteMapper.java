@@ -20,11 +20,12 @@ public class EstudianteMapper {
         if (estudiante.getCasa() != null) {
             dto.setCasa(estudiante.getCasa().getNombre());
         } else {
-            dto.setCasa(null);
+            dto.setCasa(null); // cambiar
         }
         
         if (estudiante.getMascota() != null) {
             dto.setMascota(estudiante.getMascota().getNombre());
+             //cambiar
         }
         else {
             dto.setMascota(null);
