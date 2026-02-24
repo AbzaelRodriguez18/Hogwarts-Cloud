@@ -3,11 +3,13 @@ package org.example.hogwarts.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.SoftDelete;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@SoftDelete
 @Table(name = "Estudiante")
 public class Estudiante {
     @Id

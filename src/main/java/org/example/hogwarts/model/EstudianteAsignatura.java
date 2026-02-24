@@ -6,28 +6,27 @@ import jakarta.persistence.*;
 @Table(name = "Estudiante_Asignatura")
 public class EstudianteAsignatura {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    ClaveCompuesta id;
 
     @ManyToOne
+    @MapsId("estudianteID")
     @JoinColumn(name = "id_estudiante")
     private Estudiante estudiante;
 
     @ManyToOne
+    @MapsId("asignaturaID")
     @JoinColumn(name = "id_asignatura")
     private Asignatura asignatura;
 
     @Column(name = "calificacion")
     private Double calificacion;
 
-    public Long getId() {
+
+    public ClaveCompuesta getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Estudiante getEstudiante() {
         return estudiante;

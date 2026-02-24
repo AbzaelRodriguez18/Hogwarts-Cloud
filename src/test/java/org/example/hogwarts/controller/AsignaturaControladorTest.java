@@ -8,6 +8,7 @@ import org.example.hogwarts.model.CrearDTO.MascotaCreateDTO;
 import org.example.hogwarts.model.DTOS.AsignaturaDTO;
 import org.example.hogwarts.model.DTOS.EstudianteDTO;
 import org.example.hogwarts.model.Estudiante;
+import org.example.hogwarts.model.EstudianteAsignatura;
 import org.example.hogwarts.model.Profesor;
 import org.example.hogwarts.repository.AsignaturaRepository;
 import org.example.hogwarts.repository.EstudianteRepository;
@@ -36,7 +37,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
@@ -45,8 +45,6 @@ public class AsignaturaControladorTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private AsignaturaRepository asignaturaRepository;
@@ -78,9 +76,16 @@ public class AsignaturaControladorTest {
         estudiante.setAnyoCurso(6L);
         estudiante.setFechaNacimiento(LocalDate.now());
 
-        List<Asignatura> asignaturas = new ArrayList<>();
-        asignaturas.add(asignatura);
 
+        EstudianteAsignatura estudianteAsignatura = new EstudianteAsignatura();
+        estudianteAsignatura.setAsignatura(asignatura);
+        estudianteAsignatura.setEstudiante(estudiante);
+
+        List<EstudianteAsignatura> asignaturas = new ArrayList<>();
+
+        asignaturas.add(estudianteAsignatura);
+
+        estudiante.setAsignaturas(asignaturas);
 
         estudiante = estudianteRepository.save(estudiante);
 
@@ -92,7 +97,6 @@ public class AsignaturaControladorTest {
     void IntentarEliminarAsignaturaError() throws Exception {
         mockMvc.perform(delete("/api/asignaturas/{id}", asignatura.getId())
                         .contentType(MediaType.APPLICATION_JSON))
-
                 .andExpect(status().isConflict());
     }
 }
