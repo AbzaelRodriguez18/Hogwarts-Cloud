@@ -31,7 +31,7 @@ public class Estudiante {
     @JoinColumn(name = "id_casa")
     private Casa casa;
 
-    @OneToOne(mappedBy = "estudiante")
+    @OneToOne(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
     private Mascota mascota;
 
     @OneToMany(mappedBy = "estudiante")
